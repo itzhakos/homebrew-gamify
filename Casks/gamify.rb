@@ -15,15 +15,9 @@ cask "gamify" do
   # The app updates itself from the same GitHub releases.
   auto_updates true
   depends_on arch: :arm64
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Gamify.app"
-
-  # Not notarized yet: clear the quarantine flag, as the release notes tell DMG users to do.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Gamify.app"]
-  end
 
   # Bottles (installed Windows programs and games) live in Application Support.
   zap trash: [
@@ -34,6 +28,9 @@ cask "gamify" do
   ]
 
   caveats <<~EOS
+    Gamify is not notarized yet, so macOS blocks the first launch. Allow it once with
+      xattr -dr com.apple.quarantine #{appdir}/Gamify.app
+    or with System Settings > Privacy & Security > Open Anyway.
     Gamify needs Rosetta 2; its first-run tutorial installs it.
     `brew uninstall --zap gamify` also deletes your bottles and the games in them.
   EOS
