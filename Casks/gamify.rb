@@ -1,6 +1,6 @@
 cask "gamify" do
-  version "0.11"
-  sha256 "1cb22605a26a28cdeae565a6b12fbe1a274b549e94639c53bfc339764e28fbf5"
+  version "0.12"
+  sha256 "be16570e9ee5331b3f03ef1788d5c922d66a409e1b0e4eb5387f240f5e03c9cf"
 
   url "https://github.com/itzhakos/gamify-releases/releases/download/v#{version}/Gamify-#{version}.dmg"
   name "Gamify"
